@@ -1,0 +1,33 @@
+# Task Manager - Java Console Application
+
+## 📌 Description
+This is a Java-based console Task Management System using JDBC and MySQL.
+Users can register, login, and manage tasks (Add, View, Update, Delete).
+
+## 🚀 Features
+- User Registration & Login
+- Add Task
+- View Tasks
+- Update Task
+- Delete Task
+- MySQL Database Connectivity
+
+## 🛠️ Technologies Used
+- Java
+- JDBC
+- MySQL
+- VS Code / Eclipse
+- Git & GitHub
+
+## 🗄️ Database Setup
+Run the SQL file from `sql/database.sql`.
+
+## ▶️ How to Run
+1. Clone the repository
+2. Import project into IDE
+3. Setup MySQL database
+4. Run `MainApp.java`
+
+## 👨‍💻 Author
+**Chirag Anil Wani**
+Bsc Computer Science
