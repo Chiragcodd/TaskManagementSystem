@@ -14,17 +14,27 @@ public class MainApp {
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Exit");
+
             System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
+            int choice;
+
+            // ✅ Input validation for menu choice
+            try {
+                choice = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Please enter a valid number (1, 2, or 3)!");
+                sc.nextLine(); // clear invalid input
+                continue;
+            }
             sc.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
                     System.out.println("\n--- REGISTER ---");
                     System.out.print("Username: ");
-                    String regUser = sc.nextLine();
+                    String regUser = sc.nextLine().trim();
                     System.out.print("Password: ");
-                    String regPass = sc.nextLine();
+                    String regPass = sc.nextLine().trim();
                     UserDAO.register(new User(regUser, regPass));
                     System.out.println("----------------------------");
                     break;
@@ -32,9 +42,10 @@ public class MainApp {
                 case 2:
                     System.out.println("\n--- LOGIN ---");
                     System.out.print("Username: ");
-                    String loginUser = sc.nextLine();
+                    String loginUser = sc.nextLine().trim();
                     System.out.print("Password: ");
-                    String loginPass = sc.nextLine();
+                    String loginPass = sc.nextLine().trim();
+
                     int userId = UserDAO.login(loginUser, loginPass);
 
                     if (userId > 0) {
@@ -48,17 +59,25 @@ public class MainApp {
                             System.out.println("3. Delete Task");
                             System.out.println("4. Update Task");
                             System.out.println("5. Logout");
+
                             System.out.print("Enter your choice: ");
-                            int ch = sc.nextInt();
+                            int ch;
+                            try {
+                                ch = sc.nextInt();
+                            } catch (Exception e) {
+                                System.out.println("Please enter a valid number (1-5)!");
+                                sc.nextLine(); // clear invalid input
+                                continue;
+                            }
                             sc.nextLine(); // consume newline
 
                             switch (ch) {
                                 case 1:
                                     System.out.println("\n--- ADD TASK ---");
                                     System.out.print("Title: ");
-                                    String t = sc.nextLine();
+                                    String t = sc.nextLine().trim();
                                     System.out.print("Description: ");
-                                    String d = sc.nextLine();
+                                    String d = sc.nextLine().trim();
                                     TaskDAO.addTask(new Task(t, d, "Pending"), userId);
                                     System.out.println("----------------------------");
                                     break;
@@ -69,7 +88,14 @@ public class MainApp {
 
                                 case 3:
                                     System.out.print("Enter Task ID to delete: ");
-                                    int id = sc.nextInt();
+                                    int id;
+                                    try {
+                                        id = sc.nextInt();
+                                    } catch (Exception e) {
+                                        System.out.println("Please enter a valid Task ID!");
+                                        sc.nextLine();
+                                        break;
+                                    }
                                     sc.nextLine();
                                     TaskDAO.deleteTask(id);
                                     System.out.println("----------------------------");
@@ -77,14 +103,22 @@ public class MainApp {
 
                                 case 4:
                                     System.out.print("Enter Task ID to update: ");
-                                    int updateId = sc.nextInt();
+                                    int updateId;
+                                    try {
+                                        updateId = sc.nextInt();
+                                    } catch (Exception e) {
+                                        System.out.println("Please enter a valid Task ID!");
+                                        sc.nextLine();
+                                        break;
+                                    }
                                     sc.nextLine();
+
                                     System.out.print("New Title: ");
-                                    String newTitle = sc.nextLine();
+                                    String newTitle = sc.nextLine().trim();
                                     System.out.print("New Description: ");
-                                    String newDesc = sc.nextLine();
+                                    String newDesc = sc.nextLine().trim();
                                     System.out.print("New Status (Pending/Done): ");
-                                    String newStatus = sc.nextLine();
+                                    String newStatus = sc.nextLine().trim();
                                     TaskDAO.updateTask(updateId, newTitle, newDesc, newStatus);
                                     System.out.println("----------------------------");
                                     break;
@@ -116,3 +150,4 @@ public class MainApp {
         }
     }
 }
+
