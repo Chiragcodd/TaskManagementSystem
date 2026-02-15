@@ -9,7 +9,7 @@ public class DBConnection {
             con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/task_manager",
                 "root",
-                "Chirag@123"
+                "Password"
             );
         } catch (Exception e) {
             System.out.println("Database connection failed!");
